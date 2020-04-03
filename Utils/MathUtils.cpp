@@ -100,7 +100,7 @@ namespace MathUtils
     }
     
     Vector operator>>(Vector & u, Vector & v){
-        return u.normalize()*(u*v)/v.mag();
+        return v.normalize()*(u*v)/v.mag();
     }
 
 }
