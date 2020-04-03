@@ -57,4 +57,50 @@ namespace MathUtils
         p.y = p1.y/p1.x * (p.x - p1.x) + p1.y;
         return p;
     }
+
+    // Vector's constructors
+    Vector::Vector(): x{0}, y{0} {}
+    Vector::Vector(double x, double y): x{x}, y{y} {}
+
+    double Vector::mag(){
+        return sqrt((this->x)*(this->x)+(this->y)*(this->y));
+    }
+
+    Vector Vector::normalize(){
+        return Vector(this->x, this->y)/this->mag();
+    }
+
+    Vector operator+(const Vector & u, const Vector & v)
+    {
+        return Vector(u.x+v.x, u.y+v.y);
+    }
+    
+    Vector operator-(const Vector & u, const Vector & v)
+    {
+        return Vector(u.x-v.x, u.y-v.y);
+    }
+
+    Vector operator*(const double & a, const Vector & u)
+    {
+        return Vector(a*u.x, a*u.y);
+    }
+
+    Vector operator*(const Vector & u, const double & a)
+    {
+        return Vector(a*u.x, a*u.y);
+    }
+
+    double operator*(const Vector & u, const Vector & v)
+    {
+        return u.x*v.x+u.y*v.y;
+    }
+
+    Vector operator/(const Vector & u, const double & a){
+        return Vector(u.x/a, u.y/a);
+    }
+    
+    Vector operator>>(Vector & u, Vector & v){
+        return u.normalize()*(u*v)/v.mag();
+    }
+
 }
